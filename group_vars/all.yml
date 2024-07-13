@@ -1,0 +1,50 @@
+---
+natd_interface: em0
+
+switches:
+  - name: sw1
+    type: manual
+    interface: bridge1
+  
+  - name: sw10
+    #type: standard
+    inet: 192.168.10.84/24
+
+  - name: sw20
+    type: standard
+    inet: 192.168.20.84/24
+
+  - name: sw30
+    type: standard
+    inet: 192.168.30.84/24
+
+  - name: sw31
+    type: standard
+    inet: 192.168.31.84/24
+
+  - name: br1x
+    type: standard
+  - name: br01-11
+    type: standard
+  - name: br01-12
+    type: standard
+  - name: br11-vm
+    type: standard
+  - name: br12-vm
+    type: standard
+
+  - name: hostonly
+    type: standard
+    inet: 192.168.56.1/24
+
+  - name: fw-sw00
+    type: manual
+    interface: bridge1
+
+  - name: fw-sw11
+    type: standard
+  - name: fw-sw22
+    type: standard
+  - name: fw-sw33
+    type: standard
+

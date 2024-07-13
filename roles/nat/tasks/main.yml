@@ -1,0 +1,31 @@
+---
+- name: upload natd.conf
+  tags: nat
+  ansible.builtin.template:
+    src:  natd.conf
+    dest: /etc/
+
+- name: enable natd
+  tags: nat
+  community.general.sysrc:
+    name: natd_enable
+    value: "YES"
+
+- name: set natd interface
+  tags: nat
+  community.general.sysrc:
+    name: natd_interface
+    value: "{{ natd_interface }}"
+
+- name: set natd flags
+  tags: nat
+  community.general.sysrc:
+    name: natd_flags
+    value: "-f /etc/natd.conf -dynamic"
+
+- name: start natd
+  ansible.builtin.service:
+    name: natd
+    state: restarted
+
+

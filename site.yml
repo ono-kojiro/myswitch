@@ -1,0 +1,10 @@
+- name:  create switches
+  hosts: freebsd
+
+  roles:
+    - role: nat
+      tags: nat
+
+    - role: switch
+      tags: switch
+
