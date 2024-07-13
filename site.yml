@@ -5,6 +5,6 @@
     - role: nat
       tags: nat
 
-    - role: switch
-      tags: switch
+#    - role: switch
+#      tags: switch
 
