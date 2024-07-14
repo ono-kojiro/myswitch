@@ -1,0 +1,6 @@
+---
+- name: destroy switches
+  ansible.builtin.shell: |
+    vm switch destroy {{ item.name }}
+  with_items: "{{ switches }}"
+

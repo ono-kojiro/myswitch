@@ -1,0 +1,33 @@
+---
+- name: create switches
+  ansible.builtin.shell: |
+
+    # default() filter fails on nested-mappings
+    # https://github.com/ansible/ansible/issues/35992
+
+    inet="{{ item.inet | default(None) }}"
+    #type="{{ item|json_query('item.type') | default('') }}"
+    type="{{ item.type | default('') }}"
+
+    interface="{{ item.interface | default(None) }}"
+
+    if_opts=""
+
+    if [ -z "${type}" ]; then
+      type="standard"
+    fi
+
+    if [ ! -z "${interface}" ]; then
+      if_opts="${if_opts} -b ${interface}"
+    fi
+
+    if [ ! -z "${inet}" ]; then
+      if_opts="${if_opts} -a ${inet}"
+    fi
+
+    vm switch list | grep -e '^{{ item.name }} '
+    if [ $? -ne 0 ]; then
+      vm switch create -t ${type} ${if_opts} {{ item.name }}
+    fi
+  with_items: "{{ switches }}"
+

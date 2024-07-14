@@ -2,9 +2,12 @@
   hosts: freebsd
 
   roles:
-    - role: nat
-      tags: nat
+#    - role: nat
+#      tags: nat
 
-#    - role: switch
-#      tags: switch
+    - role: switch
+      tags: switch
+    
+    - role: destroy
+      tags: destroy
 
