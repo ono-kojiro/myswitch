@@ -1,0 +1,21 @@
+---
+- name: install isc-dhcp-server
+  ansible.builtin.package:
+    name: isc-dhcp44-server
+    state: present
+
+- name: copy dhcpd.conf
+  ansible.builtin.template:
+    src:  dhcpd.conf
+    dest: /usr/local/etc/
+
+- name: enable dhcpd
+  community.general.sysrc:
+    name: dhcpd_enable
+    value: "YES"
+
+- name: restart isc-dhcpd
+  ansible.builtin.service:
+    name: isc-dhcpd
+    state: restarted
+
